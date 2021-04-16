@@ -4,6 +4,7 @@
         "mailtrap",
         "respawn",
         "tsnd",
-        "typedi"
+        "typedi",
+        "uuidv"
     ]
 }
