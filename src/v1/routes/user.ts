@@ -1,27 +1,26 @@
 'use strict';
 
-import { ResponseToolkit, Request } from 'hapi';
+import { ResponseToolkit, ServerRoute } from '@hapi/hapi';
 import { createUserController } from '../useCases/CreateUser';
-import { ILoginRequest } from '../useCases/CreateUser/CreateUserController';
+import { LoginRequestType } from '../useCases/CreateUser/CreateUserController';
 
-const users = [
+const users: ServerRoute[] = [
     {
         path: '/v1/users',
         method: 'GET',
-            handler: (request: Request, reply: ResponseToolkit) => {
+            handler: (request, reply) => {
                 return reply.response('Hello World').code(201);
             },
     },
     {
         path: '/v1/users',
         method: 'POST',
-            handler: async (request: ILoginRequest, reply: ResponseToolkit) => {
+            handler: async (request: LoginRequestType, reply: ResponseToolkit) => {
                 try {
                     return createUserController.handle(request, reply);
                 } catch (error) {
                     return reply.response({message: error || 'Unexpected error'}).code(400);
                 }
-                return reply.response('Hello World').code(201);
             },
     },
 ];
