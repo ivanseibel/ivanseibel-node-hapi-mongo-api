@@ -1,7 +1,7 @@
-import { ResponseToolkit, Request } from 'hapi';
+import { ResponseToolkit, Request } from '@hapi/hapi';
 import { CreateUserUseCase } from './CreateUserUseCase';
 
-export interface ILoginRequest extends Request {
+export interface LoginRequestType extends Request {
     payload: {
         name: string;
         email: string;
@@ -14,7 +14,7 @@ export class CreateUserController {
         private createUserUseCase: CreateUserUseCase
     ){}
     
-    async handle(request: ILoginRequest, h: ResponseToolkit){
+    async handle(request: LoginRequestType, h: ResponseToolkit){
         const { name, email, password } = request.payload;
 
         try {
